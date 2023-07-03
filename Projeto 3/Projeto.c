@@ -50,9 +50,9 @@ void printUser(const User* user) {
     printf("Nome: %s\n", user->name);
     printf("Email: %s\n", user->email);
     printf("Sexo: %s\n", user->gender);
-    printf("Endereco: %s\n", user->address);
+    printf("Endereço: %s\n", user->address);
     printf("Altura: %.2lf\n", user->height);
-    printf("Vacina: %s\n", user->vaccinated ? "Sim" : "Nao");
+    printf("Vacina: %s\n", user->vaccinated ? "Sim" : "Não");
     printf("\n");
 }
 
@@ -70,7 +70,7 @@ void addUser() {
     newUser.email[strcspn(newUser.email, "\n")] = '\0';
 
     while (!isValidEmail(newUser.email)) {
-        printf("Email invalido. Digite novamente: ");
+        printf("Email inválido. Digite novamente: ");
         fgets(newUser.email, sizeof(newUser.email), stdin);
         newUser.email[strcspn(newUser.email, "\n")] = '\0';
     }
@@ -80,12 +80,12 @@ void addUser() {
     newUser.gender[strcspn(newUser.gender, "\n")] = '\0';
 
     while (!isValidGender(newUser.gender)) {
-        printf("Sexo invalido. Digite novamente: ");
+        printf("Sexo inválido. Digite novamente: ");
         fgets(newUser.gender, sizeof(newUser.gender), stdin);
         newUser.gender[strcspn(newUser.gender, "\n")] = '\0';
     }
 
-    printf("Digite o endereco: ");
+    printf("Digite o endereço: ");
     fgets(newUser.address, sizeof(newUser.address), stdin);
     newUser.address[strcspn(newUser.address, "\n")] = '\0';
 
@@ -93,11 +93,11 @@ void addUser() {
     scanf("%lf", &newUser.height);
 
     while (!isValidHeight(newUser.height)) {
-        printf("Altura invalida. Digite novamente: ");
+        printf("Altura inválida. Digite novamente: ");
         scanf("%lf", &newUser.height);
     }
 
-    printf("O usuario foi vacinado? (1-Sim, 0-Nao): ");
+    printf("O usuário foi vacinado? (1-Sim, 0-Não): ");
     scanf("%d", &newUser.vaccinated);
 
     // Alocar memória para um novo usuário
@@ -105,7 +105,7 @@ void addUser() {
 
     // Verificar se a alocação de memória foi bem-sucedida
     if (users == NULL) {
-        printf("Erro ao alocar memoria.\n");
+        printf("Erro ao alocar memória.\n");
         return;
     }
 
@@ -113,7 +113,7 @@ void addUser() {
     users[numUsers] = newUser;
     numUsers++;
 
-    printf("\nUsuario cadastrado com sucesso.\n\n");
+    printf("\nUsuário cadastrado com sucesso.\n\n");
 }
 
 // Função principal
@@ -123,10 +123,10 @@ int main() {
     int option;
 
     do {
-        printf("1 - Adicionar usuario\n");
-        printf("2 - Listar usuarios\n");
+        printf("1 - Adicionar usuário\n");
+        printf("2 - Listar usuários\n");
         printf("0 - Sair\n");
-        printf("Escolha uma opcao: ");
+        printf("Escolha uma opção: ");
         scanf("%d", &option);
 
         switch (option) {
@@ -134,7 +134,7 @@ int main() {
                 addUser();
                 break;
             case 2:
-                printf("\n--- Usuarios cadastrados ---\n\n");
+                printf("\n--- Usuários cadastrados ---\n\n");
                 for (int i = 0; i < numUsers; i++) {
                     printUser(&users[i]);
                 }
@@ -143,7 +143,7 @@ int main() {
                 printf("\nEncerrando o programa.\n");
                 break;
             default:
-                printf("\nOpcao invalida. Tente novamente.\n\n");
+                printf("\nOpção inválida. Tente novamente.\n\n");
                 break;
         }
     } while (option != 0);
@@ -153,5 +153,6 @@ int main() {
 
     return 0;
 }
+
 
 //comentario do chat gpt:o ponteiro users é inicialmente definido como NULL. À medida que novos usuários são adicionados, a função addUser() realoca a memória para acomodar o novo usuário, usando realloc(). No final do programa, antes de sair, a memória alocada é liberada usando free(users)
